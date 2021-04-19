@@ -36,7 +36,7 @@ export default {
     }
   },
   async asyncData ({ $api, $config, route }) {
-    const characterDetail = await $api.$get(`http://localhost:8000/api/character/${route.query.id}`)
+    const characterDetail = await $api.$get(`/character/${route.query.id}`)
     return { characterDetail }
   }
 }

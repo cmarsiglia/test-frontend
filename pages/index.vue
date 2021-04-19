@@ -24,7 +24,7 @@ export default {
     }
   },
   async asyncData ({ $api, $config }) {
-    const character = await $api.$get('http://localhost:8000/api/character')
+    const character = await $api.$get('/character')
     return { character }
   }
 }
