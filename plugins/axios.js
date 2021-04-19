@@ -11,7 +11,7 @@ export default function ({ app, $axios }, inject) {
   })
   // Set baseURL to something different
   // api.setBaseURL('http://https://apirm.herokuapp.com/api')
-  api.setBaseURL('http://https://apirmcom.herokuapp.com/api')
+  api.setBaseURL('https://apirmcom.herokuapp.com/api')
   // Inject to context as $api
   inject('api', api)
 }
