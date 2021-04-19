@@ -1,6 +1,6 @@
 <template>
   <section class="wrapper">
-    <div class="wk-box">
+    <div v-if="character" class="wk-box">
       <div
         v-for="(item, index) in character.results"
         :key="index"

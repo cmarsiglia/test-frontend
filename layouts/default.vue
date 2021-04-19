@@ -2,9 +2,9 @@
   <div>
     <div class="wk-navbar">
       <div class="wk-navbar-logo"><nuxt-link to="/">Rick&Morty</nuxt-link></div>
-      <ul>
+      <ul v-if="userName">
         <li><nuxt-link to="/profile">{{ userName }}</nuxt-link></li>
-        <li><nuxt-link to="#">Salir</nuxt-link></li>
+        <li @click="logout()"><nuxt-link to="#">Salir</nuxt-link></li>
       </ul>
     </div>
     <div>
@@ -21,6 +21,13 @@ export default {
   },
   mounted () {
     this.userName = this.$store.getters.userName
+  },
+  methods: {
+    logout () {
+      this.$cookies.remove('sesionID')
+      localStorage.removeItem('dataApp')
+      this.$router.replace('/login')
+    }
   }
 }
 </script>
