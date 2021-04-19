@@ -1,10 +1,10 @@
 <template>
   <div>
     <div class="wk-navbar">
-      <div class="wk-navbar-logo">Rick&Morty</div>
+      <div class="wk-navbar-logo"><nuxt-link to="/">Rick&Morty</nuxt-link></div>
       <ul>
-        <li>{{ userName }}</li>
-        <li>GitHub</li>
+        <li><nuxt-link to="/profile">{{ userName }}</nuxt-link></li>
+        <li><nuxt-link to="#">Salir</nuxt-link></li>
       </ul>
     </div>
     <div>
@@ -54,7 +54,7 @@ export default {
   display: grid;
   grid-auto-flow: column;
   list-style-type: none;
-  grid-gap: 5px;
+  grid-gap: 15px;
   padding: 10px;
   -webkit-box-pack: end;
   justify-content: end;

@@ -40,6 +40,9 @@ a:hover {
   color:#2ECC71; text-decoration: none;
 }
 
+.el-form-item__label{
+    color: white;
+}
 button {
     appearance: auto;
     -webkit-writing-mode: horizontal-tb !important;
@@ -144,6 +147,25 @@ input {
     padding: 0 15px;
     transition: border-color .2s cubic-bezier(.645,.045,.355,1);
     width: 100%;
+}
+
+.wk-dropdown {
+    position: relative;
+    display: inline-block;
+}
+  
+.wk-dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+}
+
+.wk-dropdown:hover .wk-dropdown-content {
+    display: block;
 }
 
 .wk-auth{

@@ -6,21 +6,37 @@
         <div class="wk-form-title">Crear Cuenta</div>
       </div>
       <div>
-        <div class="wk-form-label">Nombre</div>
+        <el-form
+          ref="ruleForm"
+          :model="ruleForm"
+          :rules="rules"
+          class="">
+        <el-form-item
+          prop="name"
+          label="Nombres:">
+          <el-input
+            v-model="ruleForm.name"
+            placeholder="Ingrese su Nombre" />
+        </el-form-item>
+        <el-form-item
+          prop="email"
+          label="Correo:">
+          <el-input
+            v-model="ruleForm.email"
+            placeholder="Ingrese Correo o Usuario" />
+        </el-form-item>
+        <el-form-item
+          prop="password"
+          label="Contraseña:">
+          <el-input
+            v-model="ruleForm.password"
+            type="password"
+            placeholder="Ingrese Contraseña" />
+        </el-form-item>
         <div class="wk-form-item">
-            <input type="text" v-model="form.name" class="wk-input" placeholder="Ingresas tú Nombre">
+            <button type="button" @click="submitForm('ruleForm')" class="wk-button wk-button--primary wk-button-custom">Regitrarme</button>
         </div>
-        <div class="wk-form-label">Email</div>
-        <div class="wk-form-item">
-            <input type="text" v-model="form.email" class="wk-input" placeholder="Ingresas tú Email">
-        </div>
-        <div class="wk-form-label">Contraseña</div>
-        <div class="wk-form-item">
-            <input type="password" v-model="form.password" class="wk-input" placeholder="Ingresa tú Contraseña">
-        </div>
-        <div class="wk-form-item">
-            <button type="button" @click="signup()" class="wk-button wk-button--primary wk-button-custom">Regitrarme</button>
-        </div>
+        </el-form>
       </div>
       <div>
         <span>Ya tengo una cuenta</span> <nuxt-link to="/login">Ingresar</nuxt-link>
@@ -34,27 +50,50 @@ export default {
   layout: 'login',
   data () {
     return {
-      form: {
+      ruleForm: {
         name: '',
         email: '',
         password: ''
+      },
+      rules: {
+        name: [
+          { required: true, message: 'El campo es requerido', trigger: 'blur' }
+        ],
+        email: [
+          { required: true, message: 'El campo es requerido', trigger: 'blur' },
+          { type: 'email', message: 'El correo electronico no es valido', trigger: ['blur', 'change'] }
+        ],
+        password: [
+          { required: true, message: 'El campo es requerido', trigger: 'blur' }
+        ]
       }
     }
   },
   methods: {
+    submitForm (formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          this.signup()
+        } else {
+          console.log('error submit!!')
+          return false
+        }
+      })
+    },
     async signup () {
       const param = {
         name: this.form.name,
         email: this.form.email,
         password: this.form.password
       }
-      const response = await this.$api.$post('/register', param)
-      if (response) {
-        alert('Usuario creado correctamente')
-        this.$router.replace('/login')
-      } else {
-        alert('Problemas para crear el usuario')
-      }
+      await this.$api.$post('/register', param)
+        .then((response) => {
+          this.$router.replace('/login')
+        })
+        .catch((error) => {
+          console.log(error)
+          this.$message.error('Algo val mal, Intenta mas tarde. ')
+        })
     }
   }
 }

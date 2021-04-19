@@ -5,9 +5,13 @@
         v-for="(item, index) in character.results"
         :key="index"
         class="wk-item">
-        <img :src="item.image" alt="">
+        <img :src="item.image">
         <div class="wk-item-caption">
-          <p class="wk-item-title"><nuxt-link :to="{ path: 'detail', query: { id: item.id }}">{{ item.name }}</nuxt-link></p>
+          <p class="wk-item-title">
+            <nuxt-link :to="{ path: 'detail', query: { id: item.id }}">
+              {{ item.name }}
+            </nuxt-link>
+          </p>
           <small>Especie: {{ item.species}} - Estado: {{ item.status }}</small>
           <p>{{ item.type ? `Tipo: ${item.type}`: ''}} </p>
         </div>
@@ -38,34 +42,30 @@ export default {
 .wk-box{
   display: grid;
   list-style: none;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   grid-gap: 20px;
 }
 .wk-item{
-  height: 260px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   -webkit-transition: all .3s;
   transition: all .3s;
+  border-radius: 5px;
 }
 .wk-item> img {
   width: 100%;
   vertical-align: middle;
-  cursor: pointer;
+  border-radius: 5px 5px 0 0;
 }
-.wk-item:hover{
-  transform: scale(1.1); /* (110% zoom */
-}
+
 .wk-item-caption{
-  width: 100%;
   height: 130px;
   color: white;
-  padding: 30px 10px;
-  position: absolute;
+  padding: 20px 10px;
   bottom: 0;
   background: linear-gradient(
-  rgba(44, 62, 80, 0),
   rgba(44, 62, 80, .9),
-  rgba(44, 62, 80, 1),
-  rgba(44, 62, 80, 1));
+  rgba(44, 62, 80, .5),
+  rgba(44, 62, 80, .3));
 }
 .wk-item-caption>:nth-child(1){
   font-weight: bold;
@@ -73,12 +73,6 @@ export default {
 }
 .wk-item-caption>:nth-child(2){
   color: #AEB6BF;
-}
-.wk-item> .wk-item-caption{
-  visibility: hidden;
-}
-.wk-item:hover> .wk-item-caption{
-  visibility: visible;
 }
 .wk-item-title
 a:link,

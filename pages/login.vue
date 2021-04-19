@@ -6,29 +6,48 @@
         <div class="wk-form-title">Iniciar Sesion</div>
       </div>
       <div>
-        <div class="wk-form-label">Email</div>
-        <div class="wk-form-item">
-            <input
-              type="text"
-              v-model="form.email"
-              class="wk-input"
-              placeholder="Ingresas tú Email"
-              required="required">
-            <span v-if="msg.email">{{ msg.email }}</span>
-        </div>
-        <div class="wk-form-label">Contraseña</div>
-        <div class="wk-form-item">
-            <input
+        <el-form
+          ref="ruleForm"
+          :model="ruleForm"
+          :rules="rules"
+          class="">
+          <!-- <div class="wk-form-label">Email</div>
+          <div class="wk-form-item">
+              <input
+                type="text"
+                v-model="ruleForm.email"
+                class="wk-input"
+                placeholder="Ingresas tú Email"
+                prop="email">
+          </div>
+          <div class="wk-form-label">Contraseña</div>
+          <div class="wk-form-item">
+              <input
+                type="password"
+                v-model="ruleForm.password"
+                class="wk-input"
+                placeholder="Ingresa tú Contraseña"
+                prop="password">
+          </div> -->
+          <el-form-item
+          prop="email"
+          label="Correo:">
+          <el-input
+            v-model="ruleForm.email"
+            placeholder="Ingrese Correo o Usuario" />
+          </el-form-item>
+          <el-form-item
+            prop="password"
+            label="Contraseña:">
+            <el-input
+              v-model="ruleForm.password"
               type="password"
-              v-model="form.password"
-              class="wk-input"
-              placeholder="Ingresa tú Contraseña"
-              required="required">
-              <span v-if="msg.password">{{msg.password}}</span>
-        </div>
-        <div class="wk-form-item">
-            <button type="button" @click="login()" class="wk-button wk-button--primary wk-button-custom">LOGIN</button>
-        </div>
+              placeholder="Ingrese Contraseña" />
+          </el-form-item>
+          <div class="wk-form-item">
+              <button type="button" @click="submitForm('ruleForm')" class="wk-button wk-button--primary wk-button-custom">LOGIN</button>
+          </div>
+        </el-form>
       </div>
       <div>
         <span>¿Ya tienes una cuenta? </span>
@@ -43,46 +62,50 @@ export default {
   layout: 'login',
   data () {
     return {
-      msg: [],
-      form: {
+      ruleForm: {
         email: '',
         password: ''
+      },
+      rules: {
+        email: [
+          { required: true, message: 'El campo es requerido', trigger: 'blur' },
+          { type: 'email', message: 'El correo electronico no es valido', trigger: ['blur', 'change'] }
+        ],
+        password: [
+          { required: true, message: 'El campo es requerido', trigger: 'blur' }
+        ]
       }
-    }
-  },
-  watch: {
-    email (value) {
-      this.form.email = value
-      this.validateEmail(value)
-    },
-    password (value) {
-      this.form.password = value
-      this.validatePassword(value)
     }
   },
   methods: {
-    submit () {
-      if (this.form.email.length & this.form.password.length) {
-        console.log(this.form.email.length)
-        // this.login()
-      } else {
-        alert('Problemas de usuario / constrasela')
-      }
+    submitForm (formName) {
+      this.$refs[formName].validate((valid) => {
+        if (valid) {
+          this.login()
+        } else {
+          console.log('error submit!!')
+          return false
+        }
+      })
     },
     async login () {
       const param = {
-        email: this.form.email,
-        password: this.form.password
+        email: this.ruleForm.email,
+        password: this.ruleForm.password
       }
-      const response = await this.$api.$post('/login', param)
-
-      this.$cookies.set('sesionID', response.token, {
-        path: '/',
-        maxAge: 60 * 60 * 24 * 3
-      })
-      this.$store.dispatch('DATA_USER', response.user)
-      console.log(response)
-      this.$router.replace('/')
+      await this.$api.$post('/login', param)
+        .then((response) => {
+          this.$cookies.set('sesionID', response.token, {
+            path: '/',
+            maxAge: 60 * 60 * 24 * 3
+          })
+          this.$store.dispatch('DATA_USER', response.user)
+          console.log(response)
+          this.$router.replace('/')
+        }).catch((error) => {
+          console.log(error)
+          this.$message.error('Error en tu email o contraseña, Intenta ingresar de nuevo. ')
+        })
     }
   }
 }

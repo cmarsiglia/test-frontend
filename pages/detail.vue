@@ -57,9 +57,11 @@ export default {
     grid-area: 1/2/2/5;
     color: white;
     padding:10px 20px;
+    display: grid;
+    grid-gap: 10px;
 }
 .wk-detail-caption h1{
-    font-size: 3rem;
+    font-size: 2.5rem;
 }
 .wk-detail-caption>:nth-child(2){
     font-size: 20px;
