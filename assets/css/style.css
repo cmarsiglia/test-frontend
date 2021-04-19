@@ -1,0 +1,192 @@
+
+:root{
+    /*Colores Principales de la Aplicacion*/
+    --font-primary: 'Roboto', sans-serif;
+    --font-secundary: 'Lato', sans-serif;
+    --color-primary:#2ECC71;
+    --color-secondary:#239b56;
+    --color-text-primary: #FDFEFE;
+    --color-text-secondary: #AEB6BF;
+    --color-body-primary: #17202A;
+    --color-body-secondary: #2E4053;
+    --color-border: #34495E;
+}
+html, body {
+    font-family: var(--font-primary);
+    font-size: 15px;
+    line-height: normal;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    box-sizing: border-box;
+    background-color: var(--color-body-primary);
+    margin: 0px;
+    padding: 0px;
+    text-rendering: optimizeLegibility;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+a:link,
+a:visited,
+a:active,
+a:hover {
+  color:#2ECC71; text-decoration: none;
+}
+
+button {
+    appearance: auto;
+    -webkit-writing-mode: horizontal-tb !important;
+    text-rendering: auto;
+    color: -internal-light-dark(black, white);
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: center;
+    align-items: flex-start;
+    cursor: default;
+    background-color: -internal-light-dark(rgb(239, 239, 239), rgb(59, 59, 59));
+    box-sizing: border-box;
+    margin: 0em;
+    font: 400 13.3333px Arial;
+    padding: 1px 6px;
+    border-width: 2px;
+    border-style: outset;
+    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    border-image: initial;
+}
+
+.wk-button {
+    display: inline-block;
+    line-height: 1;
+    white-space: nowrap;
+    cursor: pointer;
+    background: #fff;
+    border: 1px solid #dcdfe6;
+    color: #606266;
+    -webkit-appearance: none;
+    text-align: center;
+    box-sizing: border-box;
+    outline: none;
+    margin: 0;
+    transition: .1s;
+    font-weight: 500;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    padding: 12px 20px;
+    font-size: 14px;
+    border-radius: 4px;
+}
+
+.wk-button--primary {
+    color: #fff;
+    background-color: var(--color-primary);
+    border-color: var(--color-secondary);
+}
+
+.wk-button--primary:hover {
+    color: #fff;
+    background-color: var(--color-secondary);
+    border-color: var(--color-secondary);
+}
+
+.wk-button-custom {
+    width: 100%;
+}
+
+input {
+    -webkit-writing-mode: horizontal-tb !important;
+    text-rendering: auto;
+    color: -internal-light-dark(black, white);
+    letter-spacing: normal;
+    word-spacing: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: inline-block;
+    text-align: start;
+    appearance: auto;
+    background-color: -internal-light-dark(rgb(255, 255, 255), rgb(59, 59, 59));
+    -webkit-rtl-ordering: logical;
+    cursor: text;
+    margin: 0em;
+    font: 400 13.3333px Arial;
+    padding: 1px 2px;
+    border-width: 2px;
+    border-style: inset;
+    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    border-image: initial;
+}
+
+.wk-input {
+    -webkit-appearance: none;
+    background-color: #fff;
+    background-image: none;
+    border-radius: 4px;
+    border: 1px solid #dcdfe6;
+    box-sizing: border-box;
+    color: #606266;
+    display: inline-block;
+    font-size: inherit;
+    height: 40px;
+    line-height: 40px;
+    outline: none;
+    padding: 0 15px;
+    transition: border-color .2s cubic-bezier(.645,.045,.355,1);
+    width: 100%;
+}
+
+.wk-auth{
+    height: 100vh;
+    display:grid;
+    grid-template: 10% auto 10% / repeat(12, 1fr);
+}
+.wk-form{
+    grid-area: 2/5/3/9;
+    background-color: var(--color-body-secondary);
+    color: var(--color-text-primary);
+    padding: 20px 40px;
+    display: grid;
+    grid-template-rows: auto 75% auto;
+}
+.wk-form> div{
+    display: grid;
+    align-content: center;
+}
+
+.wk-form> div:nth-child(3){
+    display: grid;
+    grid-auto-flow: column;
+    gap: 10px;
+    justify-content: start;
+}
+.wk-form-item {
+    margin-bottom: 22px;
+}
+.wk-form-title{
+    font-size: 2rem;
+    display: grid;
+    justify-content:center;
+    align-content: center;
+    padding: 10px;
+}
+.wk-form-welcome{
+    font-size: 1rem;
+    display: grid;
+    justify-content:center;
+    align-content: center;
+    padding: 10px;
+}
+.wk-form-label{
+    margin-bottom: 10px;
+}
