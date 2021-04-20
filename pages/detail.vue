@@ -2,7 +2,7 @@
   <section class="">
     <div class="wk-detail">
         <div class="wk-detail-header">
-            <img :src="characterDetail.image" alt="">
+            <img :src="characterDetail.image" style="witdh: 100%;">
             <div class="wk-detail-caption">
                 <h1>{{ characterDetail.name }}</h1>
                 <h2>Episodios ({{ episodeCount }})</h2>

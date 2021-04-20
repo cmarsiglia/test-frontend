@@ -9,26 +9,7 @@
         <el-form
           ref="ruleForm"
           :model="ruleForm"
-          :rules="rules"
-          class="">
-          <!-- <div class="wk-form-label">Email</div>
-          <div class="wk-form-item">
-              <input
-                type="text"
-                v-model="ruleForm.email"
-                class="wk-input"
-                placeholder="Ingresas tú Email"
-                prop="email">
-          </div>
-          <div class="wk-form-label">Contraseña</div>
-          <div class="wk-form-item">
-              <input
-                type="password"
-                v-model="ruleForm.password"
-                class="wk-input"
-                placeholder="Ingresa tú Contraseña"
-                prop="password">
-          </div> -->
+          :rules="rules">
           <el-form-item
           prop="email"
           label="Correo:">
